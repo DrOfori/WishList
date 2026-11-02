@@ -1,0 +1,6 @@
+DROP TABLE IF EXISTS wishlist;
+     CREATE TABLE wishlist(
+         id INT AUTO_INCREMENT PRIMARY KEY,
+         name VARCHAR(100) NOT NULL,
+         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+     );

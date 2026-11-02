@@ -1,0 +1,1 @@
+INSERT INTO wishlist (name) VALUES ('Jul 2026'), ('Fødselsdag'), ('Bryllupsgave');
