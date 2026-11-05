@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ny ønskeliste</title>
+</head>
+<body>
+<h1>Ny ønskeliste</h1>
+
+<p th:if="${error}" th:text="${error}" style="color: red;"></p>
+
+<form action="/wishlists" method="post">
+    <label for="name">Navn på ønskeliste</label>
+    <input type="text" id="name" name="name" th:value="${name}" maxlength="100">
+    <button type="submit">Opret</button>
+    <a href="/wishlists">Fortryd</a>
+</form>
+</body>
+</html>
