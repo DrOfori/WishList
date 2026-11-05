@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${wishlist.name}">Ønskeliste</title>
+</head>
+<body>
+<a href="/wishlists">&larr; Tilbage til mine lister</a>
+<h1 th:text="${wishlist.name}">Ønskeliste</h1>
+
+<p th:if="${#lists.isEmpty(wishes)}">Der er ingen ønsker på listen endnu.</p>
+
+<ul>
+    <li th:each="wish : ${wishes}">
+        <strong th:text="${wish.name}">Ønske</strong>
+        <span th:if="${wish.price != null}"
+              th:text="${#numbers.formatDecimal(wish.price, 1, 'POINT', 2, 'COMMA')} + ' kr.'"></span>
+        <a th:if="${wish.link != null}" th:href="${wish.link}"
+           target="_blank" rel="noopener noreferrer">Se produkt</a>
+        <a th:href="@{/wishes/{id}/edit(id=${wish.id})}">Rediger</a>
+        <form th:action="@{/wishes/{id}/delete(id=${wish.id})}" method="post" style="display:inline"
+              onsubmit="return confirm('Er du sikker på, at du vil slette dette ønske?');">
+            <button type="submit">Slet</button>
+        </form>
+    </li>
+</ul>
+
+<h2>Tilføj et ønske</h2>
+
+<p th:if="${error}" th:text="${error}" style="color: red;"></p>
+
+<form th:action="@{/wishlists/{id}/wishes(id=${wishlist.id})}" method="post">
+    <p>
+        <label for="name">Navn</label>
+        <input type="text" id="name" name="name" th:value="${formName}" maxlength="100">
+    </p>
+    <p>
+        <label for="price">Pris (valgfri)</label>
+        <input type="text" id="price" name="price" th:value="${formPrice}">
+    </p>
+    <p>
+        <label for="link">Link (valgfri)</label>
+        <input type="text" id="link" name="link" th:value="${formLink}" maxlength="2048">
+    </p>
+    <button type="submit">Tilføj</button>
+</form>
+</body>
+</html>

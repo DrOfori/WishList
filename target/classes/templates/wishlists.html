@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mine ønskelister</title>
+</head>
+<body>
+<h1>Mine ønskelister</h1>
+
+<a href="/wishlists/new">Ny ønskeliste</a>
+
+<p th:if="${#lists.isEmpty(wishlists)}">Du har ingen ønskelister endnu.</p>
+
+<ul>
+    <li th:each="wishlist : ${wishlists}">
+        <a th:href="@{/wishlists/{id}(id=${wishlist.id})}" th:text="${wishlist.name}">Navn</a>
+        (oprettet <span th:text="${#temporals.format(wishlist.createdAt, 'dd-MM-yyyy HH:mm')}">dato</span>)
+        <a th:href="@{/wishlists/{id}/edit(id=${wishlist.id})}">Omdøb</a>
+        <form th:action="@{/wishlists/{id}/delete(id=${wishlist.id})}" method="post" style="display:inline"
+              onsubmit="return confirm('Er du sikker på, at du vil slette hele listen og alle dens ønsker?');">
+            <button type="submit">Slet</button>
+        </form>
+    </li>
+</ul>
+</body>
+</html>
