@@ -1,0 +1,22 @@
+# Byggeoutput
+target/
+
+# IntelliJ
+.idea/
+*.iml
+out/
+
+# Andre editorer
+.vscode/
+.vs/
+
+# Operativsystem
+.DS_Store
+Thumbs.db
+
+# Logfiler
+*.log
+
+# Hemmeligheder (må aldrig på GitHub)
+.env
+application-local.properties
