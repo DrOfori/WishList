@@ -1,0 +1,192 @@
+/* WishList – fælles stylesheet
+   Placering: src/main/resources/static/css/style.css
+   Link i <head>:  <link rel="stylesheet" th:href="@{/css/style.css}">  */
+
+:root {
+    --bg: #ffffff;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --dark: #374151;
+    --dark-hover: #111827;
+    --light: #cbd2db;
+    --light-hover: #b8c0cc;
+    --border: #d1d5db;
+    --placeholder: #9ca3af;
+    --error: #b91c1c;
+    --radius: 999px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* ---------- Navigation ---------- */
+.site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 40px;
+    border-bottom: 1px solid var(--border);
+}
+.site-header .logo {
+    font-weight: 700;
+    font-size: 18px;
+    padding: 8px 20px;
+    background: var(--light);
+    color: var(--text);
+    text-decoration: none;
+}
+.site-header nav { display: flex; gap: 32px; }
+.site-header nav a {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+}
+.site-header nav a:hover { text-decoration: underline; }
+
+/* ---------- Layout ---------- */
+main, .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+h1 { font-size: 36px; line-height: 1.15; margin: 0 0 16px; }
+h2 { font-size: 24px; margin: 40px 0 16px; text-align: center; }
+
+.hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: center;
+    margin-bottom: 48px;
+}
+.hero-image {
+        width: 100%;
+        height: 0;
+        max-height: 320px;
+        object-fit: contain;
+        background: none;
+        border-radius: 4px;
+    }
+
+
+
+/* ---------- Links og knapper ---------- */
+a { color: var(--text); }
+
+button,
+.btn {
+    display: inline-block;
+    min-height: 44px;
+    padding: 0 24px;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    background: var(--dark);
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    text-decoration: none;
+    line-height: 44px;
+}
+button:hover, .btn:hover { background: var(--dark-hover); }
+
+.btn-secondary {
+    background: var(--light);
+    color: var(--text);
+}
+.btn-secondary:hover { background: var(--light-hover); }
+
+/* små knapper i listerækker */
+li button, li .btn { min-height: 36px; line-height: 36px; padding: 0 16px; }
+
+/* ---------- Formularer ---------- */
+form { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 16px; margin-bottom: 24px; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+label { font-size: 14px; font-weight: 600; }
+input[type="text"], input[type="url"], input[type="number"] {
+    min-height: 44px;
+    padding: 0 14px;
+    font: inherit;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    background: #fff;
+    color: var(--text);
+}
+input::placeholder { color: var(--placeholder); }
+input:focus, button:focus-visible, a:focus-visible {
+    outline: 3px solid #2563eb;
+    outline-offset: 2px;
+}
+
+/* ---------- Lister (ønskelister og ønsker) ---------- */
+ul { list-style: none; padding: 0; margin: 24px 0; display: flex; flex-direction: column; gap: 12px; }
+li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 12px 20px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+li form { margin: 0; display: inline-flex; }
+li .meta, li small { color: var(--muted); font-size: 14px; }
+li .actions { display: flex; align-items: center; gap: 12px; }
+
+/* ---------- Beskeder ---------- */
+.error, p[th\:if="${error}"] { color: var(--error); font-weight: 600; }
+.error { margin: 0 0 16px; }
+.empty { color: var(--muted); }
+
+/* ---------- Mobil ---------- */
+@media (max-width: 640px) {
+    .site-header { padding: 12px 16px; }
+    .site-header nav { gap: 16px; }
+    main, .container { padding: 24px 16px; }
+    .hero { grid-template-columns: 1fr; }
+    h1 { font-size: 28px; }
+}
+
+/* ---------- Forside (wireframe) ---------- */
+.hero p { color: var(--muted); max-width: 40ch; margin: 0 0 20px; }
+.hero-image {
+    background: var(--light) linear-gradient(135deg, transparent 55%, #9ca3af 55%);
+    min-height: 220px;
+    border-radius: 4px;
+}
+.section { margin-top: 56px; }
+.section h2 { margin-top: 0; }
+.create-box {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 16px;
+    padding: 24px;
+    background: #f3f4f6;
+    border-radius: 12px;
+}
+.create-box .field { flex: 1 1 280px; max-width: 420px; }
+.create-box input { width: 100%; }
+.create-box .error { flex-basis: 100%; text-align: center; margin: 0; }
+.wishlist-grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.wishlist-grid li { flex-direction: column; align-items: flex-start; padding: 20px; background: #fff; }
+.wishlist-grid .name { font-size: 20px; font-weight: 700; color: var(--text); text-decoration: none; }
+.wishlist-grid .name:hover { text-decoration: underline; }
+.wishlist-grid .actions { margin-top: 8px; }
+@media (max-width: 640px) { .hero { grid-template-columns: 1fr; } }
+
+

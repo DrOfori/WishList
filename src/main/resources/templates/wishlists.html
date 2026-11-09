@@ -2,25 +2,57 @@
 <html lang="da" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Mine ønskelister</title>
+    <link rel="stylesheet" th:href="@{/css/Homepage.css}">
 </head>
 <body>
-<h1>Mine ønskelister</h1>
 
-<a href="/wishlists/new">Ny ønskeliste</a>
+<header class="site-header">
+    <a class="logo" th:href="@{/wishlists}">WishList</a>
 
-<p th:if="${#lists.isEmpty(wishlists)}">Du har ingen ønskelister endnu.</p>
+</header>
 
-<ul>
-    <li th:each="wishlist : ${wishlists}">
-        <a th:href="@{/wishlists/{id}(id=${wishlist.id})}" th:text="${wishlist.name}">Navn</a>
-        (oprettet <span th:text="${#temporals.format(wishlist.createdAt, 'dd-MM-yyyy HH:mm')}">dato</span>)
-        <a th:href="@{/wishlists/{id}/edit(id=${wishlist.id})}">Omdøb</a>
-        <form th:action="@{/wishlists/{id}/delete(id=${wishlist.id})}" method="post" style="display:inline"
-              onsubmit="return confirm('Er du sikker på, at du vil slette hele listen og alle dens ønsker?');">
-            <button type="submit">Slet</button>
+<main>
+    <section class="hero">
+        <div>
+            <h1>Velkommen til Ønskebyen</h1>
+            <p>Lav dine egne ønskelister, og samle alle dine ønsker ét sted med pris og link.</p>
+        </div>
+        <img class="hero-image" th:src="@{/images/wish_list_image.png}" alt="Illustration af en ønskeliste">
+    </section>
+
+    <section class="section" id="opret">
+        <h2>Opret ny ønskeliste</h2>
+        <form class="create-box" th:action="@{/wishlists}" method="post">
+            <p class="error" th:if="${error}" th:text="${error}"></p>
+            <div class="field">
+                <label for="name">Navn på ønskeliste</label>
+                <input type="text" id="name" name="name" maxlength="100" placeholder="fx Jul 2026">
+            </div>
+            <button type="submit">Opret</button>
         </form>
-    </li>
-</ul>
+    </section>
+
+    <section class="section">
+        <h2>Dine ønskelister</h2>
+        <p class="empty" th:if="${#lists.isEmpty(wishlists)}" style="text-align:center">Du har ingen ønskelister endnu.</p>
+        <ul class="wishlist-grid">
+            <li th:each="wishlist : ${wishlists}">
+                <a class="name" th:href="@{/wishlists/{id}(id=${wishlist.id})}" th:text="${wishlist.name}">Navn</a>
+                <span class="meta">oprettet <span th:text="${#temporals.format(wishlist.createdAt, 'dd-MM-yyyy HH:mm')}">dato</span></span>
+                <div class="actions">
+                    <a class="btn btn-secondary" th:href="@{/wishlists/{id}/edit(id=${wishlist.id})}">Omdøb</a>
+                    <form th:action="@{/wishlists/{id}/delete(id=${wishlist.id})}" method="post"
+                          onsubmit="return confirm('Vil du slette listen og alle dens ønsker?')">
+                        <button type="submit">Slet</button>
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </section>
+</main>
+
 </body>
+</html>
 </html>

@@ -1,1 +1,0 @@
-![](C:\Users\iddi5\OneDrive - Erhvervsakademi København\Billeder\Skærmbilleder\Skærmbillede 2026-11-09 094004.png)

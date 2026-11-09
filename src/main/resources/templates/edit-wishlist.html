@@ -2,18 +2,29 @@
 <html lang="da" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Omdøb ønskeliste</title>
+    <link rel="stylesheet" th:href="@{/css/Homepage.css}">
 </head>
 <body>
-<h1>Omdøb ønskeliste</h1>
 
-<p th:if="${error}" th:text="${error}" style="color: red;"></p>
+<header class="site-header">
+    <a class="logo" th:href="@{/wishlists}">WishList</a>
+</header>
 
-<form th:action="@{/wishlists/{id}/edit(id=${wishlistId})}" method="post">
-    <label for="name">Navn</label>
-    <input type="text" id="name" name="name" th:value="${name}" maxlength="100">
-    <button type="submit">Gem</button>
-    <a href="/wishlists">Fortryd</a>
-</form>
+<main>
+    <h1>Omdøb ønskeliste</h1>
+
+    <form class="create-box" th:action="@{/wishlists/{id}/edit(id=${wishlistId})}" method="post">
+        <p class="error" th:if="${error}" th:text="${error}"></p>
+        <div class="field">
+            <label for="name">Navn på ønskeliste</label>
+            <input type="text" id="name" name="name" maxlength="100" th:value="${name}">
+        </div>
+        <button type="submit">Gem</button>
+        <a class="btn btn-secondary" th:href="@{/wishlists}">Fortryd</a>
+    </form>
+</main>
+
 </body>
 </html>
