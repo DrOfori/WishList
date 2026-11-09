@@ -99,18 +99,39 @@ Lagene arbejder i rækkefølgen **controller → service → repository → data
 
 Dokumentationen ligger i mappen `docs`:
 
-| Dokument | Fil |
-|---|---|
-| ER-model | `docs/<udfyldes>` |
-| Klassediagram | `docs/<udfyldes>` |
-| UX/UI: wireframes eller papirprototype | `docs/<udfyldes>` |
-| UX/UI: usability test | `docs/<udfyldes>` |
-| UX/UI: heuristisk evaluering | `docs/<udfyldes>` |
-| Qodana-kodeinspektion (skærmbillede) | `docs/<udfyldes>` |
+| Dokument |
+|---|
+| ER-model |
+| Klassediagram|
+| UX/UI: wireframes eller papirprototype |
+| UX/UI: usability test |
+| UX/UI: heuristisk evaluering |
+| Qodana-kodeinspektion (skærmbillede) |
 
 ## CI/CD
 
-> **Udfyldes, når workflows er oprettet.** Beskriv kort, hvad GitHub Actions gør: build af feature-branches, unittest og integrationstest ved pull requests til `main`, Qodana, og deploy til Azure.
+Projektet bruger GitHub Actions. Workflow-filerne ligger i `.github/workflows`.
+
+### Continuous Integration (`ci.yml`)
+
+| Hvornår | Hvad sker der |
+|---|---|
+| Push til en anden branch end `main` (fx en feature-branch) | **Build:** projektet bygges med Maven og Java 17 |
+| Pull request til `main` | **Build** kører først. Når den er grøn, kører **Test**, som afvikler alle unittests og integrationstests med `mvn verify`. Testrapporterne gemmes som artifact |
+
+Hvis en ny kørsel starter på den samme branch, mens en gammel stadig kører, bliver den gamle stoppet.
+
+### Statisk kodeanalyse (`qodana_code_quality.yml`)
+
+Qodana analyserer koden og kører ved pull requests, ved push til `main` og manuelt fra fanen *Actions*. Resultatet kommer som kommentar og annotationer på pull requesten og kan ses i Qodana Cloud. Qodana bruger en hemmelig nøgle, `QODANA_TOKEN`, som ligger som repository secret i GitHub. Et skærmbillede af kodeinspektionen ligger i `docs/qodana`.
+
+### Continuous Deployment
+
+> **Udfyldes, når Azure-deploy er på plads:** Beskriv, at en workflow bygger jar-filen og deployer til Azure App Service, når en pull request er merget til `main`, og hvor linket til appen findes.
+
+### Arbejdsgang
+
+Al kode går via en feature-branch og en pull request til `main`. En pull request skal have grønne checks (Build, Test og Qodana) og et review, før den merges. Se [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Kendte begrænsninger
 
@@ -120,12 +141,13 @@ Dokumentationen ligger i mappen `docs`:
 
 ## Gruppen
 
-| Navn | GitHub-navn |
-|---|---|
-| `<udfyldes>` | `<udfyldes>` |
-| `<udfyldes>` | `<udfyldes>` |
-| `<udfyldes>` | `<udfyldes>` |
-
+| Gruppenavn | Gruppe 4       |
+|------------|----------------|
+| Iddi       | idju1000       |
+| Wail       | wail-2002      |
+| Simon      | DrOfori        |
+| Rawnd      | Rata10         |
+| Mustafa    | digitalworld24 |
 ## Bidrag til projektet
 
 Se [CONTRIBUTING.md](CONTRIBUTING.md).
