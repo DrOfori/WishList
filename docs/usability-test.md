@@ -45,11 +45,7 @@ Derudover blev der foreslået nye funktioner såsom:
 - Mulighed for at tilføje beskrivelser og detaljer.
 - Tydeligere visning af oprettede ønsker.
 
-## 6. Forbedringer
-
-...
-
-## 7. Konklusion
+## 6. Konklusion
 
 Usability testen viste, at vores digitale ønskeseddel generelt er nem at bruge, og at de vigtigste funktioner fungerer efter hensigten.
 
