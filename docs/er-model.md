@@ -1,1 +1,1 @@
-<img width="1752" height="897" alt="Wishlist ER Diagram with Purple Accents" src="https://github.com/user-attachments/assets/2c649f7a-432e-4957-9cc5-ac6bba7998a4" />
+<img width="1672" height="941" alt="ER-Diagram – Wishlist with Wish Relationship" src="https://github.com/user-attachments/assets/8eb4f688-1008-4afe-8d34-a01a8b753ab3" />
