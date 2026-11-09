@@ -99,8 +99,8 @@ Lagene arbejder i rækkefølgen **controller → service → repository → data
 
 Dokumentationen ligger i mappen `docs`:
 
-| Dokument | Fil |
-|---|-|
+| Dokument |
+|---|
 | ER-model |
 | Klassediagram|
 | UX/UI: wireframes eller papirprototype |
